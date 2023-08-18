@@ -1,0 +1,9 @@
+.lhs-card {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin: auto;
+    height: 40vh;
+    margin-bottom: 20px;
+    background-color: rgb(240, 235, 235);
+}
