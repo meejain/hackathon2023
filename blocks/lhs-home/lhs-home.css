@@ -1,0 +1,62 @@
+.section.lhs-home-container {
+    padding: 0;
+}
+
+
+.block.lhs-home .card-button {
+    margin-left: 95%;
+    width: 10vw;
+    height: 6vh;
+    margin-bottom: 40px;
+    padding: 0;
+    font-size: 30px;
+}
+
+
+.block.lhs-home .lhs-card {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: auto;
+    height: 40vh;
+    margin-bottom: 20px;
+    gap: 30px;
+}
+
+.block.lhs-home .lhs-card > .card-content {
+    flex-basis: 60%;
+    background-color: #f2f5f5
+}
+
+.block.lhs-home .lhs-card > .card-score {
+    flex-basis: 40%;
+    background-color: #f2f5f5
+}
+
+.block.lhs-home .lhs-card > .card-content:first-child h2 {
+padding-left: 10px;
+font-size: var(--heading-font-size-m);
+color: #4c7574;
+font-weight: bold;
+text-shadow: 1px 1px black
+}
+
+.block.lhs-home .lhs-card > .card-content:first-child h2::after {
+    content: "";
+    padding-left: 10px;
+    display: block;
+    border-bottom: 2px solid #eb3300;
+    height: 1px;
+    width: 35%;
+}
+
+.block.lhs-home .lhs-card > .card-content h4 {
+font-size: var(--body-font-size-xs);
+color: var(--text-color);
+font-weight: normal;
+margin-left: 20px;
+line-height: 0;
+}
+
+
+

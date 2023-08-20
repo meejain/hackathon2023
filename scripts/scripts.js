@@ -55,11 +55,20 @@ function buildAutoBlocks(main) {
   }
 }
 
+export async function getAllSheetData(){
+  if (!window.allSheetData) {
+    const resp = await fetch('/query-index.json?sheet=hackathon');
+    const json = await resp.json();
+    window.allSheetData = json.data;
+  }
+  return (window.allSheetData);
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
  */
-// eslint-disable-next-line import/prefer-default-export
+
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
@@ -121,7 +130,6 @@ async function loadLazy(doc) {
  * without impacting the user experience.
  */
 function loadDelayed() {
-  // eslint-disable-next-line import/no-cycle
   window.setTimeout(() => import('./delayed.js'), 3000);
   // load anything that can be postponed to the latest here
 }
