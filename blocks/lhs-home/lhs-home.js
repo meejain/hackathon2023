@@ -48,7 +48,7 @@ export default async function decorate(block){
             if (row == sheetList[0]) {
                 const cardButton = document.createElement('button');
                 cardButton.classList.add('card-button');
-                cardButton.innerHTML = "Analyse";
+                cardButton.innerHTML = "Analyze";
                 block.append(cardButton);
             }
             t = t + 1;
