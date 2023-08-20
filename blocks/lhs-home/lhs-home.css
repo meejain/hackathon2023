@@ -35,8 +35,10 @@ font-weight: bold;
 }
 
 .block.lhs-home .lhs-card > .card-content h4 {
-font-size: var(--body-font-size-s);
+font-size: var(--body-font-size-xs);
 color: var(--text-color);
+font-weight: normal;
+margin-left: 20px;
 }
 
 

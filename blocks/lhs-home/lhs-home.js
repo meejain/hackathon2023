@@ -2,7 +2,6 @@ import { getAllSheetData } from '../../scripts/scripts.js';
 
 
 function createCard(row, style) {
-    console.log(row.skipmin);
     const card = document.createElement('div');
     if (style) card.classList.add(style);
     const cardContent = document.createElement('div');
@@ -27,15 +26,6 @@ function createCard(row, style) {
     card.append(cardScore);
     return (card);
 }
-
-
-
-
-
-
-
-
-
 
 
 
