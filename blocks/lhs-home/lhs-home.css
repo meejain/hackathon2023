@@ -20,7 +20,7 @@
 
 .block.lhs-home .lhs-card > .card-content:first-child h2 {
 padding-left: 10px;
-font-size: var(--body-font-size-m);
+font-size: var(--body-font-size-l);
 color: #4c7574;
 font-weight: bold;
 }
