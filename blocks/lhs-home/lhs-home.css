@@ -3,7 +3,7 @@
     flex-direction: row;
     width: 100%;
     margin: auto;
-    height: 35vh;
+    height: 40vh;
     margin-bottom: 20px;
     gap: 30px;
 }
@@ -32,6 +32,11 @@ font-weight: bold;
     border-bottom: 2px solid #eb3300;
     height: 1px;
     width: 35%;
+}
+
+.block.lhs-home .lhs-card > .card-content h4 {
+font-size: var(--body-font-size-s);
+color: var(--text-color);
 }
 
 
