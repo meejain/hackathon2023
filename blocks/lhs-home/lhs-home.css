@@ -1,9 +1,38 @@
-.lhs-card {
+.block.lhs-home .lhs-card {
     display: flex;
     flex-direction: row;
-    width: 90%;
+    width: 100%;
     margin: auto;
     height: 40vh;
     margin-bottom: 20px;
-    background-color: #f2f5f5;
+    gap: 30px;
 }
+
+.block.lhs-home .lhs-card > .card-content {
+    flex-basis: 70%;
+    background-color: #f2f5f5
+}
+
+.block.lhs-home .lhs-card > .card-score {
+    flex-basis: 30%;
+    background-color: #f2f5f5
+}
+
+.block.lhs-home .lhs-card > .card-content:first-child h2 {
+padding-left: 10px;
+font-size: var(--body-font-size-s);
+color: #4c7574;
+font-weight: bold;
+}
+
+.block.lhs-home .lhs-card > .card-content:first-child h2::after {
+    content: "";
+    padding-left: 10px;
+    display: block;
+    border-bottom: 2px solid #eb3300;
+    height: 1px;
+    width: 35%;
+}
+
+
+
