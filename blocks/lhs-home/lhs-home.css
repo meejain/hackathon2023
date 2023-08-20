@@ -9,12 +9,12 @@
 }
 
 .block.lhs-home .lhs-card > .card-content {
-    flex-basis: 70%;
+    flex-basis: 60%;
     background-color: #f2f5f5
 }
 
 .block.lhs-home .lhs-card > .card-score {
-    flex-basis: 30%;
+    flex-basis: 40%;
     background-color: #f2f5f5
 }
 
