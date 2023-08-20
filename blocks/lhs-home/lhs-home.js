@@ -33,6 +33,13 @@ function createCard(row, style) {
 
 
 export default async function decorate(block){
+    let arr=[];
+    let t = 2;
+    let l = 90;
+    function analyseObj(time,lhs) {
+        this.time = time;
+        this.lhs = lhs;
+    }
     block.textContent = '';
     const sheetList = await getAllSheetData();
     console.log(sheetList);
@@ -44,10 +51,13 @@ export default async function decorate(block){
                 cardButton.innerHTML = "Analyse";
                 block.append(cardButton);
             }
+            t = t + 1;
+            let obj = new analyseObj(t,l);
+            arr.push(obj);
             block.append(createCard(row, 'lhs-card'));
         });
     } else {
         block.remove();
     }
-
+    console.log(arr[1].time);
 }
