@@ -23,6 +23,7 @@ padding-left: 10px;
 font-size: var(--heading-font-size-m);
 color: #4c7574;
 font-weight: bold;
+text-shadow: 1px 1px black
 }
 
 .block.lhs-home .lhs-card > .card-content:first-child h2::after {
