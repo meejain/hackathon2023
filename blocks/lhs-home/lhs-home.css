@@ -3,7 +3,7 @@
     flex-direction: row;
     width: 100%;
     margin: auto;
-    height: 40vh;
+    height: 30vh;
     margin-bottom: 20px;
     gap: 30px;
 }
@@ -20,7 +20,7 @@
 
 .block.lhs-home .lhs-card > .card-content:first-child h2 {
 padding-left: 10px;
-font-size: var(--body-font-size-l);
+font-size: var(--heading-font-size-l);
 color: #4c7574;
 font-weight: bold;
 }
