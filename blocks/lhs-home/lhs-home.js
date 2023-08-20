@@ -38,6 +38,12 @@ export default async function decorate(block){
     console.log(sheetList);
     if (sheetList.length) {
         sheetList.forEach((row) => {
+            if (row == sheetList[0]) {
+                const cardButton = document.createElement('button');
+                cardButton.classList.add('card-button');
+                cardButton.innerHTML = "Analyse";
+                block.append(cardButton);
+            }
             block.append(createCard(row, 'lhs-card'));
         });
     } else {
