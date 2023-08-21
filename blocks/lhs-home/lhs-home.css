@@ -12,7 +12,7 @@
     font-size: 30px;
 }
 
-.block.lhs-home > div > div {
+.block.lhs-home > div:first-child > div {
     display: flex;
     flex-direction: row;
     align-items: center;
