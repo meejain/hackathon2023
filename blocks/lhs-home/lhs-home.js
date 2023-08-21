@@ -1,6 +1,5 @@
 import { getAllSheetData } from '../../scripts/scripts.js';
 
-
 function createCard(row, style) {
     const card = document.createElement('div');
     if (style) card.classList.add(style);
@@ -24,17 +23,19 @@ function createCard(row, style) {
     cardMetadataul.innerHTML= cardMetadataul.innerHTML + `<li><h4>Segment Store latest value from OffRc log: ${row.lastoffRclog}</h4></li>`;
     cardMetadataul.innerHTML= cardMetadataul.innerHTML + `<li><h4>Current Segment Store size is: ${row.current}</h4></li>`;
     const cardScore = document.createElement('div');
+    const cardPerf = document.createElement('div');
+    cardScore.append(cardPerf);
+    const cardComment = document.createElement('div');
+    cardPerf.after(cardComment);
     cardScore.classList.add('card-score');
     card.append(cardScore);
     return (card);
 }
 
 
-
-
 export default async function decorate(block){
     let arr=[];
-    let t = 2;
+    let t = 3;
     let l = 90;
     function analyseObj(time,lhs) {
         this.time = time;
@@ -46,10 +47,37 @@ export default async function decorate(block){
     if (sheetList.length) {
         sheetList.forEach((row) => {
             if (row == sheetList[0]) {
+                const cardparam = document.createElement('div');
+                block.append(cardparam);
+                const trip = document.createElement('div');
+                cardparam.append(trip);
+                const tripleft = document.createElement('div');
+                trip.append(tripleft);
+                tripleft.classList.add('triangleclass');
+                const tripright = document.createElement('div');
+                tripright.innerHTML = `<h4> 0 - 49 </h4>`;
+                trip.append(tripright);
+                const rectp = document.createElement('div');
+                cardparam.append(rectp);
+                const rectleft = document.createElement('div');
+                rectp.append(rectleft);
+                rectleft.classList.add('rectangleclass');
+                const rectright = document.createElement('div');
+                rectright.innerHTML = `<h4> 50 - 89 </h4>`;
+                rectp.append(rectright);
+                const circlep = document.createElement('div');
+                cardparam.append(circlep);
+                const circleleft = document.createElement('div');
+                circlep.append(circleleft);
+                circleleft.classList.add('circleclass');
+                const circleright = document.createElement('div');
+                circleright.innerHTML = `<h4> 90 - 100 </h4>`;
+                circlep.append(circleright);
                 const cardButton = document.createElement('button');
                 cardButton.classList.add('card-button');
-                cardButton.innerHTML = "Analyse";
-                block.append(cardButton);
+                cardButton.innerHTML = "Analyze";
+                cardparam.append(cardButton);
+                block.append(cardparam);
             }
             t = t + 1;
             let obj = new analyseObj(t,l);
@@ -59,5 +87,25 @@ export default async function decorate(block){
     } else {
         block.remove();
     }
-    console.log(arr[1].time);
+    const cardButton = document.querySelector('main .block.lhs-home button');
+    const dotssection = document.querySelectorAll('main .block.lhs-home .card-score > div:first-child');
+    dotssection.forEach((element)=> {
+        const firstdot = document.createElement('div');
+        const seconddot = document.createElement('div');
+        const thirddot = document.createElement('div');
+        element.append(firstdot);
+        element.append(seconddot);
+        element.append(thirddot);
+        });
+    cardButton.addEventListener('click', function (){
+    dotssection.forEach((element,indexparent)=> {
+    element.querySelectorAll('div').forEach((minielement)=>{
+        console.log(arr[indexparent].time);
+        minielement.classList.add('dot');
+        setTimeout(function() {
+            minielement.classList.remove('dot');
+        }, arr[indexparent].time*1000);
+      });
+    });
+  });
 }

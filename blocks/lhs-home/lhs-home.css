@@ -4,7 +4,7 @@
 
 
 .block.lhs-home .card-button {
-    margin-left: 95%;
+    margin-left: 60%;
     width: 10vw;
     height: 6vh;
     margin-bottom: 40px;
@@ -12,6 +12,26 @@
     font-size: 30px;
 }
 
+.block.lhs-home > div:first-child {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 110%;
+}
+
+.block.lhs-home > div:first-child > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.block.lhs-home > div:first-child > div h4 {
+    padding-bottom: 10px;
+    font-weight: normal;
+    font-size: 15px;
+}
 
 .block.lhs-home .lhs-card {
     display: flex;
@@ -58,5 +78,71 @@ margin-left: 20px;
 line-height: 0;
 }
 
+.block.lhs-home .triangleclass {
+    width: 0;
+	height: 0;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-bottom: 16px solid #f33;
+}
 
+.block.lhs-home .rectangleclass {
+  height: 16px;
+  width: 16px;
+  background-color: #fa3;
+}
 
+.block.lhs-home .circleclass {
+  height: 16px;
+  width: 16px;
+  background-color: #0c6;
+  border-radius: 50%;
+}
+
+.block.lhs-home .lhs-card .card-score {
+    display: flex;
+    flex-direction: column;
+}
+
+main .block.lhs-home .card-score > div:first-child {
+    display: flex;
+    justify-content: center;
+    height: 70%;
+    align-items: center;
+}
+
+main .block.lhs-home .card-score > div:first-child .dot {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #4b9cdb;
+}
+
+@keyframes jumping {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    
+    50% {
+      transform: translate3d(0, 15px, 0);
+    }
+    
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  main .block.lhs-home .card-score > div:first-child .dot:nth-last-child(1) {
+    animation: jumping 0.6s 0.1s ease-in infinite;
+  }
+
+  main .block.lhs-home .card-score > div:first-child .dot:nth-last-child(2) {
+    animation: jumping 0.6s 0.2s ease-in infinite;
+  }
+
+  main .block.lhs-home .card-score > div:first-child .dot:nth-last-child(3) {
+    animation: jumping 0.6s 0.3s ease-in infinite;
+  }
+
+  
