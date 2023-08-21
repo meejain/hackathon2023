@@ -35,7 +35,7 @@ function createCard(row, style) {
 
 export default async function decorate(block){
     let arr=[];
-    let t = 2;
+    let t = 3;
     let l = 90;
     function analyseObj(time,lhs) {
         this.time = time;
@@ -87,7 +87,6 @@ export default async function decorate(block){
     } else {
         block.remove();
     }
-    console.log(arr[1].time);
     const cardButton = document.querySelector('main .block.lhs-home button');
     const dotssection = document.querySelectorAll('main .block.lhs-home .card-score > div:first-child');
     dotssection.forEach((element)=> {
@@ -99,10 +98,13 @@ export default async function decorate(block){
         element.append(thirddot);
         });
     cardButton.addEventListener('click', function (){
-    dotssection.forEach((element)=> {
+    dotssection.forEach((element,indexparent)=> {
     element.querySelectorAll('div').forEach((minielement)=>{
-        console.log(minielement);
+        console.log(arr[indexparent].time);
         minielement.classList.add('dot');
+        setTimeout(function() {
+            minielement.classList.remove('dot');
+        }, arr[indexparent].time*1000);
       });
     });
   });
