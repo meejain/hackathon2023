@@ -46,6 +46,30 @@ export default async function decorate(block){
     if (sheetList.length) {
         sheetList.forEach((row) => {
             if (row == sheetList[0]) {
+                const cardparam = document.createElement('div');
+                block.append(cardparam);
+                const trip = document.createElement('div');
+                cardparam.append(trip);
+                const tripleft = document.createElement('div');
+                trip.append(tripleft);
+                tripleft.classList.add('triangleclass');
+                const tripright = document.createElement('div');
+                tripright.innerHTML = `<h4> 0 - 49 </h4>`;
+                trip.append(tripright);
+                const rectp = document.createElement('div');
+                cardparam.append(rectp);
+                const rectleft = document.createElement('div');
+                rectp.append(rectleft);
+                rectleft.classList.add('rectangleclass');
+                const rectright = document.createElement('div');
+                rectp.append(rectright);
+                const circlep = document.createElement('div');
+                cardparam.append(circlep);
+                const circleleft = document.createElement('div');
+                circlep.append(circleleft);
+                circleleft.classList.add('circleclass');
+                const circleright = document.createElement('div');
+                circlep.append(circleright);
                 const cardButton = document.createElement('button');
                 cardButton.classList.add('card-button');
                 cardButton.innerHTML = "Analyze";
