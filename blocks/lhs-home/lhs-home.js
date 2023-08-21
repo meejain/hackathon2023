@@ -1,6 +1,5 @@
 import { getAllSheetData } from '../../scripts/scripts.js';
 
-
 function createCard(row, style) {
     const card = document.createElement('div');
     if (style) card.classList.add(style);
@@ -24,12 +23,14 @@ function createCard(row, style) {
     cardMetadataul.innerHTML= cardMetadataul.innerHTML + `<li><h4>Segment Store latest value from OffRc log: ${row.lastoffRclog}</h4></li>`;
     cardMetadataul.innerHTML= cardMetadataul.innerHTML + `<li><h4>Current Segment Store size is: ${row.current}</h4></li>`;
     const cardScore = document.createElement('div');
+    const cardPerf = document.createElement('div');
+    cardScore.append(cardPerf);
+    const cardComment = document.createElement('div');
+    cardPerf.after(cardComment);
     cardScore.classList.add('card-score');
     card.append(cardScore);
     return (card);
 }
-
-
 
 
 export default async function decorate(block){
@@ -87,4 +88,22 @@ export default async function decorate(block){
         block.remove();
     }
     console.log(arr[1].time);
+    const cardButton = document.querySelector('main .block.lhs-home button');
+    console.log(cardButton);
+    cardButton.addEventListener('click', getStats(arr));
+}
+
+function getStats(metadata){
+    const dotssection = document.querySelectorAll('main .block.lhs-home .card-score > div:first-child');
+    dotssection.forEach((element)=> {
+    const firstdot = document.createElement('div');
+    firstdot.classList.add('dot');
+    const seconddot = document.createElement('div');
+    seconddot.classList.add('dot');
+    const thirddot = document.createElement('div');
+    thirddot.classList.add('dot');
+    element.append(firstdot);
+    element.append(seconddot);
+    element.append(thirddot);
+});
 }
