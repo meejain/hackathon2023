@@ -62,6 +62,7 @@ export default async function decorate(block){
                 rectp.append(rectleft);
                 rectleft.classList.add('rectangleclass');
                 const rectright = document.createElement('div');
+                rectright.innerHTML = `<h4> 50 - 89 </h4>`;
                 rectp.append(rectright);
                 const circlep = document.createElement('div');
                 cardparam.append(circlep);
@@ -69,6 +70,7 @@ export default async function decorate(block){
                 circlep.append(circleleft);
                 circleleft.classList.add('circleclass');
                 const circleright = document.createElement('div');
+                circleright.innerHTML = `<h4> 90 - 100 </h4>`;
                 circlep.append(circleright);
                 const cardButton = document.createElement('button');
                 cardButton.classList.add('card-button');
