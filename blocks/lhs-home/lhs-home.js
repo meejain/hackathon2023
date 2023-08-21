@@ -90,10 +90,7 @@ export default async function decorate(block){
     console.log(arr[1].time);
     const cardButton = document.querySelector('main .block.lhs-home button');
     console.log(cardButton);
-    cardButton.addEventListener('click', getStats(arr));
-}
-
-function getStats(metadata){
+    cardButton.addEventListener('click', function (arr){
     const dotssection = document.querySelectorAll('main .block.lhs-home .card-score > div:first-child');
     dotssection.forEach((element)=> {
     const firstdot = document.createElement('div');
@@ -105,5 +102,6 @@ function getStats(metadata){
     element.append(firstdot);
     element.append(seconddot);
     element.append(thirddot);
-});
+    });
+  });
 }
