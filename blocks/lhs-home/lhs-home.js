@@ -89,19 +89,21 @@ export default async function decorate(block){
     }
     console.log(arr[1].time);
     const cardButton = document.querySelector('main .block.lhs-home button');
-    console.log(cardButton);
-    cardButton.addEventListener('click', function (arr){
     const dotssection = document.querySelectorAll('main .block.lhs-home .card-score > div:first-child');
     dotssection.forEach((element)=> {
-    const firstdot = document.createElement('div');
-    firstdot.classList.add('dot');
-    const seconddot = document.createElement('div');
-    seconddot.classList.add('dot');
-    const thirddot = document.createElement('div');
-    thirddot.classList.add('dot');
-    element.append(firstdot);
-    element.append(seconddot);
-    element.append(thirddot);
+        const firstdot = document.createElement('div');
+        const seconddot = document.createElement('div');
+        const thirddot = document.createElement('div');
+        element.append(firstdot);
+        element.append(seconddot);
+        element.append(thirddot);
+        });
+    cardButton.addEventListener('click', function (){
+    dotssection.forEach((element)=> {
+    element.querySelectorAll('div').forEach((minielement)=>{
+        console.log(minielement);
+        minielement.classList.add('dot');
+      });
     });
   });
 }
