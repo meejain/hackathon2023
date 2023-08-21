@@ -12,16 +12,16 @@
     font-size: 30px;
 }
 
+.block.lhs-home > div:first-child {
+    display: flex;
+    flex-direction: row;
+}
+
 .block.lhs-home > div:first-child > div {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 20px;
-}
-
-.block.lhs-home > div:first-child {
-    display: flex;
-    flex-direction: row;
 }
 
 .block.lhs-home .lhs-card {
