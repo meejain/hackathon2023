@@ -120,12 +120,14 @@ main .block.lhs-home .card-score > div:first-child .dot {
 }
 
 @keyframes jumping {
-    0 {
+    0% {
       transform: translate3d(0, 0, 0);
     }
+    
     50% {
       transform: translate3d(0, 15px, 0);
     }
+    
     100% {
       transform: translate3d(0, 0, 0);
     }
