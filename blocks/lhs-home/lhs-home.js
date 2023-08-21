@@ -73,7 +73,8 @@ export default async function decorate(block){
                 const cardButton = document.createElement('button');
                 cardButton.classList.add('card-button');
                 cardButton.innerHTML = "Analyze";
-                block.append(cardButton);
+                cardparam.append(cardButton);
+                block.append(cardparam);
             }
             t = t + 1;
             let obj = new analyseObj(t,l);
