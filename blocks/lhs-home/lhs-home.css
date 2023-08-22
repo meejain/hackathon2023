@@ -165,6 +165,8 @@ main .block.lhs-home .card-score > div:first-child .outercircle {
   border-radius: 50%;
   background: #d7f5d5;
   overflow: hidden;
+  transition: opacity .5s;
+  opacity: 1;
 }
 
 
@@ -183,6 +185,8 @@ main .block.lhs-home .card-score > div:first-child .innercircle {
   font-size: 3em;
   font-weight: bold;
   color: #0b4a07;
+  transition: opacity /5s;
+  opacity: 1;
 }
 
 
