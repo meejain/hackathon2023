@@ -112,7 +112,7 @@ export default async function decorate(block){
                     outerelement.classList.add('outercircle');
                     outerelement.querySelectorAll('div').forEach((innerelement)=>{
                     innerelement.classList.add('innercircle');
-                    innerelement.innerHTML=`${arr[indexouter].lhs}%`;
+                    innerelement.innerHTML=`${arr[indexouter].lhs}`;
                     });
                     outerelement.style.backgroundImage = `conic-gradient(#00cc66 ${arr[indexouter].lhs}%, #d7f5d5 0)`;
                 });
