@@ -87,6 +87,7 @@ export default async function decorate(block){
     } else {
         block.remove();
     }
+    console.log(arr);
     const cardButton = document.querySelector('main .block.lhs-home button');
     const perfssection = document.querySelectorAll('main .block.lhs-home .card-score > div:first-child');
     perfssection.forEach((element)=> {
@@ -100,6 +101,7 @@ export default async function decorate(block){
         dotsection.append(thirddot);
         element.append(dotsection);
         });
+
     perfssection.forEach((element)=> {
         const cirsection = document.createElement('div');
         cirsection.classList.add('circlesection');
@@ -110,11 +112,14 @@ export default async function decorate(block){
         element.append(cirsection);
         });
         cardButton.addEventListener('click', function (){
-            perfssection.forEach((element)=> {
-                element.querySelectorAll('.circlesection > div').forEach((outerelement,indexouter)=>{
-                    outerelement.classList.add('outercircle');
+            perfssection.forEach((element,indexouter)=> {
+                element.querySelectorAll('.circlesection > div').forEach((outerelement)=>{
+                    setTimeout(function() { outerelement.classList.add('outercircle');}, arr[indexouter].time*1000);
+                    // outerelement.classList.add('outercircle');
                     outerelement.querySelectorAll('div').forEach((innerelement)=>{
-                    innerelement.classList.add('innercircle');
+                    setTimeout(function() { innerelement.classList.add('innercircle');}, arr[indexouter].time*1000);  
+                    // innerelement.classList.add('innercircle');
+                    setTimeout(function() {
                     let progressStartValue = 0;
                     const progressEndValue = arr[indexouter].lhs;
                     const speed = 30;
@@ -125,8 +130,7 @@ export default async function decorate(block){
                         if (progressStartValue == progressEndValue) {
                             clearInterval(progress);
                         }
-                    }, speed);
-
+                    }, speed);}, arr[indexouter].time*1000);
                     });
                 });
             });
@@ -136,8 +140,8 @@ export default async function decorate(block){
     const dotsection = document.querySelectorAll('main .block.lhs-home .card-score .dotsectionclass');
     dotsection.forEach((element,indexparent)=> {
         console.log(element);
+        console.log(indexparent);
     element.querySelectorAll('div').forEach((minielement)=>{
-        console.log(arr[indexparent].time);
         minielement.classList.add('dot');
         setTimeout(function() {
             minielement.classList.remove('dot');
