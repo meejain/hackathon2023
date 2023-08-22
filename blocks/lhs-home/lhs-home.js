@@ -101,13 +101,24 @@ export default async function decorate(block){
         const cirsection = document.createElement('div');
         cirsection.classList.add('circlesection');
         const outcircle = document.createElement('div');
-        outcircle.classList.add('outercircle');
         const incircle = document.createElement('div');
-        incircle.classList.add('innercircle');
         outcircle.append(incircle);
         cirsection.append(outcircle);
         element.append(cirsection);
         });
+        cardButton.addEventListener('click', function (){
+            dotssection.forEach((element)=> {
+                element.querySelectorAll('.circlesection > div').forEach((outerelement,indexouter)=>{
+                    outerelement.classList.add('outercircle');
+                    outerelement.querySelectorAll('div').forEach((innerelement)=>{
+                    innerelement.classList.add('innercircle');
+                    innerelement.innerHTML=`${arr[indexouter].lhs}%`;
+                    });
+                    outerelement.style.backgroundImage = `conic-gradient(#00cc66 ${arr[indexouter].lhs}%, #d7f5d5 0)`;
+                });
+            });
+        });
+            
 //     cardButton.addEventListener('click', function (){
 //     dotssection.forEach((element,indexparent)=> {
 //     element.querySelectorAll('div').forEach((minielement)=>{
