@@ -102,10 +102,9 @@ line-height: 0;
 .block.lhs-home .lhs-card .card-score {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
 }
 
-main .block.lhs-home .card-score .dotsectionclass {
+main .block.lhs-home .card-score > div:first-child {
     display: flex;
     justify-content: center;
     height: 70%;
@@ -114,7 +113,7 @@ main .block.lhs-home .card-score .dotsectionclass {
     font-size: 16px;
 }
 
-main .block.lhs-home .card-score .dotsectionclass .dot {
+main .block.lhs-home .card-score > div:first-child .dot {
   display: inline-block;
   width: 15px;
   height: 15px;
@@ -156,6 +155,7 @@ main .block.lhs-home .card-score > div:first-child .circlesection {
   align-items: center;
   padding: 2rem 1rem;
   position: absolute;
+  margin-top: 50px;
 }
 
 main .block.lhs-home .card-score > div:first-child .outercircle {
@@ -166,7 +166,7 @@ main .block.lhs-home .card-score > div:first-child .outercircle {
   border-radius: 50%;
   background: #d7f5d5;
   overflow: hidden;
-  transition: opacity .5s;
+  transition: opacity 2s;
   opacity: 1;
 }
 
@@ -186,7 +186,7 @@ main .block.lhs-home .card-score > div:first-child .innercircle {
   font-size: 3em;
   font-weight: bold;
   color: #0b4a07;
-  transition: opacity /5s;
+  transition: opacity 2s;
   opacity: 1;
 }
 

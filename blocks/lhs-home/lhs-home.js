@@ -88,10 +88,10 @@ export default async function decorate(block){
         block.remove();
     }
     const cardButton = document.querySelector('main .block.lhs-home button');
-    const perfsection = document.querySelectorAll('main .block.lhs-home .card-score > div:first-child');
-    perfsection.forEach((element)=> {
+    const perfssection = document.querySelectorAll('main .block.lhs-home .card-score > div:first-child');
+    perfssection.forEach((element)=> {
         const dotsection = document.createElement('div');
-        dotsection.classList.add('dotsectionclass')
+        dotsection.classList.add('dotsectionclass');
         const firstdot = document.createElement('div');
         const seconddot = document.createElement('div');
         const thirddot = document.createElement('div');
@@ -100,41 +100,41 @@ export default async function decorate(block){
         dotsection.append(thirddot);
         element.append(dotsection);
         });
-    // perfsection.forEach((element)=> {
-    //     const cirsection = document.createElement('div');
-    //     cirsection.classList.add('circlesection');
-    //     const outcircle = document.createElement('div');
-    //     const incircle = document.createElement('div');
-    //     outcircle.append(incircle);
-    //     cirsection.append(outcircle);
-    //     element.append(cirsection);
-    //     });
-        // cardButton.addEventListener('click', function (){
-        //     perfsection.forEach((element)=> {
-        //         element.querySelectorAll('.circlesection > div').forEach((outerelement,indexouter)=>{
-        //             outerelement.classList.add('outercircle');
-        //             outerelement.querySelectorAll('div').forEach((innerelement)=>{
-        //             innerelement.classList.add('innercircle');
-        //             let progressStartValue = 0;
-        //             const progressEndValue = arr[indexouter].lhs;
-        //             const speed = 30;
-        //             const progress = setInterval(() => {
-        //                 progressStartValue++;
-        //                 innerelement.textContent = `${progressStartValue}`;
-        //                 outerelement.style.background = `conic-gradient(#00cc66 ${progressStartValue *3.6}deg, #d7f5d5 0deg)`;
-        //                 if (progressStartValue == progressEndValue) {
-        //                     clearInterval(progress);
-        //                 }
-        //             }, speed);
+    perfssection.forEach((element)=> {
+        const cirsection = document.createElement('div');
+        cirsection.classList.add('circlesection');
+        const outcircle = document.createElement('div');
+        const incircle = document.createElement('div');
+        outcircle.append(incircle);
+        cirsection.append(outcircle);
+        element.append(cirsection);
+        });
+        cardButton.addEventListener('click', function (){
+            perfssection.forEach((element)=> {
+                element.querySelectorAll('.circlesection > div').forEach((outerelement,indexouter)=>{
+                    outerelement.classList.add('outercircle');
+                    outerelement.querySelectorAll('div').forEach((innerelement)=>{
+                    innerelement.classList.add('innercircle');
+                    let progressStartValue = 0;
+                    const progressEndValue = arr[indexouter].lhs;
+                    const speed = 30;
+                    const progress = setInterval(() => {
+                        progressStartValue++;
+                        innerelement.textContent = `${progressStartValue}`;
+                        outerelement.style.background = `conic-gradient(#00cc66 ${progressStartValue *3.6}deg, #d7f5d5 0deg)`;
+                        if (progressStartValue == progressEndValue) {
+                            clearInterval(progress);
+                        }
+                    }, speed);
 
-        //             });
-        //         });
-        //     });
-        // });
+                    });
+                });
+            });
+        });
             
     cardButton.addEventListener('click', function (){
-        const dotsection = document.querySelectorAll('main .block.lhs-home .card-score .dotsectionclass');
-        dotsection.forEach((element,indexparent)=> {
+    const dotsection = document.querySelectorAll('main .block.lhs-home .card-score .dotsectionclass');
+    dotsection.forEach((element,indexparent)=> {
         console.log(element);
     element.querySelectorAll('div').forEach((minielement)=>{
         console.log(arr[indexparent].time);
