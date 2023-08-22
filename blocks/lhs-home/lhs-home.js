@@ -35,7 +35,7 @@ function createCard(row, style) {
 
 export default async function decorate(block){
     let arr=[];
-    let t = 3;
+    let t = 2;
     let l = 90;
     function analyseObj(time,lhs) {
         this.time = time;
@@ -122,7 +122,7 @@ export default async function decorate(block){
                     setTimeout(function() {
                     let progressStartValue = 0;
                     const progressEndValue = arr[indexouter].lhs;
-                    const speed = 30;
+                    const speed = 20;
                     const progress = setInterval(() => {
                         progressStartValue++;
                         innerelement.textContent = `${progressStartValue}`;
