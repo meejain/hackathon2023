@@ -112,9 +112,19 @@ export default async function decorate(block){
                     outerelement.classList.add('outercircle');
                     outerelement.querySelectorAll('div').forEach((innerelement)=>{
                     innerelement.classList.add('innercircle');
-                    innerelement.innerHTML=`${arr[indexouter].lhs}`;
+                    let progressStartValue = 0;
+                    const progressEndValue = arr[indexouter].lhs;
+                    const speed = 30;
+                    const progress = setInterval(() => {
+                        progressStartValue++;
+                        innerelement.textContent = `${progressStartValue}`;
+                        outerelement.style.background = `conic-gradient(#00cc66 ${progressStartValue *3.6}deg, #d7f5d5 0deg)`;
+                        if (progressStartValue == progressEndValue) {
+                            clearInterval(progress);
+                        }
+                    }, speed);
+
                     });
-                    outerelement.style.backgroundImage = `conic-gradient(#00cc66 ${arr[indexouter].lhs}%, #d7f5d5 0)`;
                 });
             });
         });

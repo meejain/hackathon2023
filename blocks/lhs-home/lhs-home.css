@@ -167,6 +167,7 @@ main .block.lhs-home .card-score > div:first-child .outercircle {
   overflow: hidden;
 }
 
+
 main .block.lhs-home .card-score > div:first-child .innercircle {
   display: flex;
   justify-content: center;
