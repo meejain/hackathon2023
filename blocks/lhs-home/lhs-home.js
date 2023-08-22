@@ -97,15 +97,26 @@ export default async function decorate(block){
         element.append(seconddot);
         element.append(thirddot);
         });
-    cardButton.addEventListener('click', function (){
-    dotssection.forEach((element,indexparent)=> {
-    element.querySelectorAll('div').forEach((minielement)=>{
-        console.log(arr[indexparent].time);
-        minielement.classList.add('dot');
-        setTimeout(function() {
-            minielement.classList.remove('dot');
-        }, arr[indexparent].time*1000);
-      });
-    });
-  });
+    dotssection.forEach((element)=> {
+        const cirsection = document.createElement('div');
+        cirsection.classList.add('circlesection');
+        const outcircle = document.createElement('div');
+        outcircle.classList.add('outercircle');
+        const incircle = document.createElement('div');
+        incircle.classList.add('innercircle');
+        outcircle.append(incircle);
+        cirsection.append(outcircle);
+        element.append(cirsection);
+        });
+//     cardButton.addEventListener('click', function (){
+//     dotssection.forEach((element,indexparent)=> {
+//     element.querySelectorAll('div').forEach((minielement)=>{
+//         console.log(arr[indexparent].time);
+//         minielement.classList.add('dot');
+//         setTimeout(function() {
+//             minielement.classList.remove('dot');
+//         }, arr[indexparent].time*1000);
+//       });
+//     });
+//   });
 }
