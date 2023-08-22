@@ -102,9 +102,10 @@ line-height: 0;
 .block.lhs-home .lhs-card .card-score {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
 }
 
-main .block.lhs-home .card-score > div:first-child {
+main .block.lhs-home .card-score .dotsectionclass {
     display: flex;
     justify-content: center;
     height: 70%;
@@ -113,7 +114,7 @@ main .block.lhs-home .card-score > div:first-child {
     font-size: 16px;
 }
 
-main .block.lhs-home .card-score > div:first-child .dot {
+main .block.lhs-home .card-score .dotsectionclass .dot {
   display: inline-block;
   width: 15px;
   height: 15px;
