@@ -200,8 +200,6 @@ main .block.lhs-home .card-score .card-info button {
   background-color: white;
   color: var(--link-color);
   font: var(--body-font-size-s);
-  text-shadow: 1px 1px black;
-  font-weight: bold;
 }
 
   
