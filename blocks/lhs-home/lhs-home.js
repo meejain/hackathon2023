@@ -25,8 +25,13 @@ function createCard(row, style) {
     const cardScore = document.createElement('div');
     const cardPerf = document.createElement('div');
     cardScore.append(cardPerf);
-    const cardComment = document.createElement('div');
-    cardPerf.after(cardComment);
+    const cardInfo = document.createElement('div');
+    cardInfo.classList.add('card-info');
+    const infoButton = document.createElement('button');
+    infoButton.classList.add('info-button');
+    infoButton.innerHTML = "Diagnostics";
+    cardInfo.append(infoButton);
+    cardPerf.after(cardInfo);
     cardScore.classList.add('card-score');
     card.append(cardScore);
     return (card);

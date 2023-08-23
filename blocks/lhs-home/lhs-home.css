@@ -190,6 +190,15 @@ main .block.lhs-home .card-score > div:first-child .innercircle {
   opacity: 1;
 }
 
+main .block.lhs-home .card-score .card-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 
+main .block.lhs-home .card-score .card-info button {
+  background-color: white;
+  color: #03c2fc;
+}
 
   
