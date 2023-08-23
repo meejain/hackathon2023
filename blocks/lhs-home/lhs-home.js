@@ -36,7 +36,7 @@ function createCard(row, style) {
 export default async function decorate(block){
     let arr=[];
     let t = 2;
-    let l = 90;
+    let l = 100;
     function analyseObj(time,lhs) {
         this.time = time;
         this.lhs = lhs;
@@ -80,6 +80,7 @@ export default async function decorate(block){
                 block.append(cardparam);
             }
             t = t + 1;
+            l = l - 10;
             let obj = new analyseObj(t,l);
             arr.push(obj);
             block.append(createCard(row, 'lhs-card'));
@@ -115,18 +116,32 @@ export default async function decorate(block){
             perfssection.forEach((element,indexouter)=> {
                 element.querySelectorAll('.circlesection > div').forEach((outerelement)=>{
                     setTimeout(function() { outerelement.classList.add('outercircle');}, arr[indexouter].time*1000);
-                    // outerelement.classList.add('outercircle');
                     outerelement.querySelectorAll('div').forEach((innerelement)=>{
                     setTimeout(function() { innerelement.classList.add('innercircle');}, arr[indexouter].time*1000);  
-                    // innerelement.classList.add('innercircle');
                     setTimeout(function() {
                     let progressStartValue = 0;
                     const progressEndValue = arr[indexouter].lhs;
                     const speed = 20;
                     const progress = setInterval(() => {
                         progressStartValue++;
-                        innerelement.textContent = `${progressStartValue}`;
-                        outerelement.style.background = `conic-gradient(#00cc66 ${progressStartValue *3.6}deg, #d7f5d5 0deg)`;
+                        if (progressEndValue == 0) {innerelement.textContent = 0;}
+                        innerelement.textContent = progressEndValue == 0 ? 0:`${progressStartValue}`;
+                        if (progressEndValue > 89 ) {outerelement.style.background = `conic-gradient(#00cc66 ${progressStartValue *3.6}deg, #d7f5d5 0deg)`;}
+                        else if (progressEndValue > 49 && progressEndValue < 90) {
+                            outerelement.style.background = `conic-gradient(#ffa400 ${progressStartValue *3.6}deg, #f2eadc 0deg)`;
+                            innerelement.style.color = '#91600a';
+                            innerelement.style.backgroundColor = '#f2eadc';
+                        }
+                        else if (progressEndValue < 50 && progressEndValue > 0) {
+                            outerelement.style.background = `conic-gradient(#f33 ${progressStartValue *3.6}deg, #f7e3e1 0deg)`;
+                            innerelement.style.color = '#8a160c';
+                            innerelement.style.backgroundColor = '#f7e3e1';
+                        }
+                        else {
+                            innerelement.style.color = '#8a160c';
+                            innerelement.style.backgroundColor = '#f7e3e1';
+                            outerelement.style.background = '#f7e3e1';
+                        }
                         if (progressStartValue == progressEndValue) {
                             clearInterval(progress);
                         }
