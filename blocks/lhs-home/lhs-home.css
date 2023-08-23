@@ -102,6 +102,7 @@ line-height: 0;
 .block.lhs-home .lhs-card .card-score {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
 }
 
 main .block.lhs-home .card-score > div:first-child {
