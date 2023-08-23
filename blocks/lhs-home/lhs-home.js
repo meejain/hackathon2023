@@ -25,8 +25,13 @@ function createCard(row, style) {
     const cardScore = document.createElement('div');
     const cardPerf = document.createElement('div');
     cardScore.append(cardPerf);
-    const cardComment = document.createElement('div');
-    cardPerf.after(cardComment);
+    const cardInfo = document.createElement('div');
+    cardInfo.classList.add('card-info');
+    const infoButton = document.createElement('button');
+    infoButton.classList.add('info-button');
+    infoButton.innerHTML = "Diagnostics";
+    cardInfo.append(infoButton);
+    cardPerf.after(cardInfo);
     cardScore.classList.add('card-score');
     card.append(cardScore);
     return (card);
@@ -88,7 +93,6 @@ export default async function decorate(block){
     } else {
         block.remove();
     }
-    console.log(arr);
     const cardButton = document.querySelector('main .block.lhs-home button');
     const perfssection = document.querySelectorAll('main .block.lhs-home .card-score > div:first-child');
     perfssection.forEach((element)=> {
@@ -126,21 +130,31 @@ export default async function decorate(block){
                         progressStartValue++;
                         if (progressEndValue == 0) {innerelement.textContent = 0;}
                         innerelement.textContent = progressEndValue == 0 ? 0:`${progressStartValue}`;
-                        if (progressEndValue > 89 ) {outerelement.style.background = `conic-gradient(#00cc66 ${progressStartValue *3.6}deg, #d7f5d5 0deg)`;}
+                        if (progressEndValue > 89 ) {
+                            outerelement.style.background = `conic-gradient(#00cc66 ${progressStartValue *3.6}deg, #d7f5d5 0deg)`;
+                            outerelement.parentElement.parentElement.parentElement.querySelector('button').style.backgroundColor = '#d7f5d5';
+                            outerelement.parentElement.parentElement.parentElement.querySelector('button').style.color = '#0b4a07';
+                        }
                         else if (progressEndValue > 49 && progressEndValue < 90) {
                             outerelement.style.background = `conic-gradient(#ffa400 ${progressStartValue *3.6}deg, #f2eadc 0deg)`;
                             innerelement.style.color = '#91600a';
                             innerelement.style.backgroundColor = '#f2eadc';
+                            outerelement.parentElement.parentElement.parentElement.querySelector('button').style.backgroundColor = '#f2eadc';
+                            outerelement.parentElement.parentElement.parentElement.querySelector('button').style.color = '#91600a';
                         }
                         else if (progressEndValue < 50 && progressEndValue > 0) {
                             outerelement.style.background = `conic-gradient(#f33 ${progressStartValue *3.6}deg, #f7e3e1 0deg)`;
                             innerelement.style.color = '#8a160c';
                             innerelement.style.backgroundColor = '#f7e3e1';
+                            outerelement.parentElement.parentElement.parentElement.querySelector('button').style.backgroundColor = '#f7e3e1';
+                            outerelement.parentElement.parentElement.parentElement.querySelector('button').style.color = '#8a160c';
                         }
                         else {
                             innerelement.style.color = '#8a160c';
                             innerelement.style.backgroundColor = '#f7e3e1';
                             outerelement.style.background = '#f7e3e1';
+                            outerelement.parentElement.parentElement.parentElement.querySelector('button').style.backgroundColor = '#f7e3e1';
+                            outerelement.parentElement.parentElement.parentElement.querySelector('button').style.color = '#8a160c';
                         }
                         if (progressStartValue == progressEndValue) {
                             clearInterval(progress);
@@ -154,8 +168,6 @@ export default async function decorate(block){
     cardButton.addEventListener('click', function (){
     const dotsection = document.querySelectorAll('main .block.lhs-home .card-score .dotsectionclass');
     dotsection.forEach((element,indexparent)=> {
-        console.log(element);
-        console.log(indexparent);
     element.querySelectorAll('div').forEach((minielement)=>{
         minielement.classList.add('dot');
         setTimeout(function() {

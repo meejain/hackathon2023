@@ -10,6 +10,7 @@
     margin-bottom: 40px;
     padding: 0;
     font-size: 30px;
+    box-shadow: 0 8px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgba(0 0 0 / 19%);
 }
 
 .block.lhs-home > div:first-child {
@@ -102,6 +103,7 @@ line-height: 0;
 .block.lhs-home .lhs-card .card-score {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
 }
 
 main .block.lhs-home .card-score > div:first-child {
@@ -190,6 +192,17 @@ main .block.lhs-home .card-score > div:first-child .innercircle {
   opacity: 1;
 }
 
+main .block.lhs-home .card-score .card-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 
+main .block.lhs-home .card-score .card-info button {
+  background-color: white;
+  color: var(--link-color);
+  font: var(--body-font-size-s);
+  box-shadow: 0 8px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgba(0 0 0 / 19%);
+}
 
   
