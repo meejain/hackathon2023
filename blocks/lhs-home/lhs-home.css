@@ -198,7 +198,10 @@ main .block.lhs-home .card-score .card-info {
 
 main .block.lhs-home .card-score .card-info button {
   background-color: white;
-  color: #03c2fc;
+  color: var(--link-color);
+  font: var(--body-font-size-s);
+  text-shadow: 1px 1px black;
+  font-weight: bold;
 }
 
   
