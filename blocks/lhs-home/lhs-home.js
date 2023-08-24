@@ -41,13 +41,13 @@ function createCard(row, style) {
     const popup = document.createElement('div');
     popup.classList.add('pop-up');
     infoButton.after(popup);
-    const tick = document.createElement('img');
-    tick.src = '../../icons/404-tick.png';
-    popup.append(tick);
+    const aem = document.createElement('img');
+    aem.src = '../../icons/AEM.png';
+    popup.append(aem);
     const popupmessage1 = document.createElement('h2');
     popupmessage1.innerHTML='Thank You';
     const popupmessage2 = document.createElement('p');
-    tick.after(popupmessage1);
+    aem.after(popupmessage1);
     popupmessage1.after(popupmessage2);
     const okButton = document.createElement('button');
     okButton.innerHTML = "Ok";
