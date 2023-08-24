@@ -30,7 +30,32 @@ function createCard(row, style) {
     const infoButton = document.createElement('button');
     infoButton.classList.add('info-button');
     infoButton.innerHTML = "Diagnostics";
+    infoButton.addEventListener('click',function(){
+        const topheight = infoButton.offsetTop - 100;
+        const pop = document.querySelector('main .block.lhs-home .card-score .card-info .pop-up');
+        pop.style.top = topheight + 'px';
+        console.log(pop.style.top);
+        pop.classList.add('open-popup');
+    });
     cardInfo.append(infoButton);
+    const popup = document.createElement('div');
+    popup.classList.add('pop-up');
+    infoButton.after(popup);
+    const aem = document.createElement('img');
+    aem.src = '../../icons/AEM.png';
+    popup.append(aem);
+    const popupmessage1 = document.createElement('h2');
+    popupmessage1.innerHTML='Thank You';
+    const popupmessage2 = document.createElement('p');
+    aem.after(popupmessage1);
+    popupmessage1.after(popupmessage2);
+    const okButton = document.createElement('button');
+    okButton.innerHTML = "Ok";
+    okButton.addEventListener('click',function(){
+        const pop = document.querySelector('main .block.lhs-home .card-score .card-info .pop-up');
+        pop.classList.remove('open-popup');
+    });
+    popupmessage2.after(okButton);
     cardPerf.after(cardInfo);
     cardScore.classList.add('card-score');
     card.append(cardScore);
