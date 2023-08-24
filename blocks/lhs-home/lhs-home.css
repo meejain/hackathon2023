@@ -216,6 +216,7 @@ main .block.lhs-home .card-score .card-info .pop-up {
   color: #333;
   visibility: hidden;
   transition: transform 2s;
+  box-shadow: 0 8px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgba(0 0 0 / 19%);
 }
 
 main .block.lhs-home .card-score .card-info .open-popup {
