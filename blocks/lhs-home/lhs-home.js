@@ -30,6 +30,13 @@ function createCard(row, style) {
     const infoButton = document.createElement('button');
     infoButton.classList.add('info-button');
     infoButton.innerHTML = "Diagnostics";
+    infoButton.addEventListener('click',function(){
+        console.log(infoButton.offsetTop);
+        const pop = document.querySelector('main .block.lhs-home .card-score .card-info .pop-up');
+        pop.style.top = infoButton.offsetTop + 'px';
+        console.log(pop.style.top);
+        pop.classList.add('open-popup');
+    });
     cardInfo.append(infoButton);
     const popup = document.createElement('div');
     popup.classList.add('pop-up');
@@ -44,6 +51,10 @@ function createCard(row, style) {
     popupmessage1.after(popupmessage2);
     const okButton = document.createElement('button');
     okButton.innerHTML = "Ok";
+    okButton.addEventListener('click',function(){
+        const pop = document.querySelector('main .block.lhs-home .card-score .card-info .pop-up');
+        pop.classList.remove('open-popup');
+    });
     popupmessage2.after(okButton);
     cardPerf.after(cardInfo);
     cardScore.classList.add('card-score');

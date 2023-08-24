@@ -210,12 +210,17 @@ main .block.lhs-home .card-score .card-info .pop-up {
   background-color: white;
   border-radius: 6px;
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%,-50%) scale(0.1);
+  transform: translate(-50%,-50%) scale(0);
   text-align: center;
   padding: 0 30px 30px;
   color: #333;
+  visibility: hidden;
+  transition: transform 2s;
+}
+
+main .block.lhs-home .card-score .card-info .open-popup {
+  visibility: visible;
+  transform: translate(-50%,-50%) scale(1);
 }
 
 main .block.lhs-home .card-score .card-info .pop-up img {
@@ -224,6 +229,8 @@ main .block.lhs-home .card-score .card-info .pop-up img {
   border-radius: 50%;
   box-shadow: 0 8px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgba(0 0 0 / 19%);
 }
+
+
 
 
 
