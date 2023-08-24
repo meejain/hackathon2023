@@ -221,6 +221,7 @@ main .block.lhs-home .card-score .card-info .pop-up {
 main .block.lhs-home .card-score .card-info .open-popup {
   visibility: visible;
   transform: translate(-50%,-50%) scale(1);
+  left: 110%;
 }
 
 main .block.lhs-home .card-score .card-info .pop-up img {

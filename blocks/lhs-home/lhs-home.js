@@ -31,7 +31,6 @@ function createCard(row, style) {
     infoButton.classList.add('info-button');
     infoButton.innerHTML = "Diagnostics";
     infoButton.addEventListener('click',function(){
-        console.log(infoButton.offsetTop);
         const pop = document.querySelector('main .block.lhs-home .card-score .card-info .pop-up');
         pop.style.top = infoButton.offsetTop + 'px';
         console.log(pop.style.top);
