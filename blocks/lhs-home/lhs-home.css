@@ -206,7 +206,7 @@ main .block.lhs-home .card-score .card-info button {
 }
 
 main .block.lhs-home .card-score .card-info .pop-up {
-  width: 400px;
+  width: 300px;
   background-color: white;
   border-radius: 6px;
   position: absolute;
@@ -221,8 +221,8 @@ main .block.lhs-home .card-score .card-info .pop-up {
 main .block.lhs-home .card-score .card-info .open-popup {
   visibility: visible;
   transform: translate(-50%,-50%) scale(1);
-  left: 70.4%;
-  z-index: 2;
+  left: 85%;
+  z-index: 2  ;
 }
 
 main .block.lhs-home .card-score .card-info .pop-up img {
