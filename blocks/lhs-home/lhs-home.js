@@ -1,6 +1,6 @@
 import { getAllSheetData } from '../../scripts/scripts.js';
 
-function createCard(row, style) {
+function createCard(row, style, index) {
     const card = document.createElement('div');
     if (style) card.classList.add(style);
     const cardContent = document.createElement('div');
@@ -32,7 +32,7 @@ function createCard(row, style) {
     infoButton.innerHTML = "Diagnostics";
     infoButton.addEventListener('click',function(){
         const topheight = infoButton.offsetTop - 100;
-        const pop = document.querySelector('main .block.lhs-home .card-score .card-info .pop-up');
+        const pop = document.querySelectorAll('main .block.lhs-home .card-score .card-info .pop-up')[index];
         pop.style.top = topheight + 'px';
         console.log(pop.style.top);
         pop.classList.add('open-popup');
@@ -47,12 +47,13 @@ function createCard(row, style) {
     const popupmessage1 = document.createElement('h2');
     popupmessage1.innerHTML='Thank You';
     const popupmessage2 = document.createElement('p');
+    popupmessage2.innerHTML = `<h4>Current Segment Store size is: ${row.current}</h4>`
     aem.after(popupmessage1);
     popupmessage1.after(popupmessage2);
     const okButton = document.createElement('button');
     okButton.innerHTML = "Ok";
     okButton.addEventListener('click',function(){
-        const pop = document.querySelector('main .block.lhs-home .card-score .card-info .pop-up');
+        const pop = document.querySelectorAll('main .block.lhs-home .card-score .card-info .pop-up')[index];
         pop.classList.remove('open-popup');
     });
     popupmessage2.after(okButton);
@@ -75,7 +76,7 @@ export default async function decorate(block){
     const sheetList = await getAllSheetData();
     console.log(sheetList);
     if (sheetList.length) {
-        sheetList.forEach((row) => {
+        sheetList.forEach((row, index) => {
             if (row == sheetList[0]) {
                 const cardparam = document.createElement('div');
                 block.append(cardparam);
@@ -113,7 +114,7 @@ export default async function decorate(block){
             l = l - 10;
             let obj = new analyseObj(t,l);
             arr.push(obj);
-            block.append(createCard(row, 'lhs-card'));
+            block.append(createCard(row, 'lhs-card', index));
         });
     } else {
         block.remove();
