@@ -22,7 +22,7 @@ function gaugeParameters(skipmin,skipmax,postmin,postmax,lastoffRclog,current) {
  return deduct;
 }
 
-function createCard(row, style, index) {
+function createCard(row, style, index, l) {
     const card = document.createElement('div');
     if (style) card.classList.add(style);
     const cardContent = document.createElement('div');
@@ -69,7 +69,7 @@ function createCard(row, style, index) {
     const popupmessage1 = document.createElement('h2');
     popupmessage1.innerHTML='Thank You';
     const popupmessage2 = document.createElement('p');
-    popupmessage2.innerHTML = gaugeParameters(row.skipmin,row.skipmax,row.postmin,row.postmax,row.lastoffRclog,row.current);
+    popupmessage2.innerHTML = l;
     // popupmessage2.innerHTML = `<h4>Current Segment Store size is: ${row.current}</h4>`
     aem.after(popupmessage1);
     popupmessage1.after(popupmessage2);
@@ -139,7 +139,7 @@ export default async function decorate(block){
             t = t + 1;
             let obj = new analyseObj(t,l);
             arr.push(obj);
-            block.append(createCard(row, 'lhs-card', index));
+            block.append(createCard(row, 'lhs-card', index, l));
         });
     } else {
         block.remove();
