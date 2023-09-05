@@ -85,15 +85,17 @@ function createCard(row, style, index) {
     return (card);
 }
 
+export class analyseObj {
+    constructor(time, lhs) {
+        this.time = time;
+        this.lhs = lhs;
+    }
+}
 
 export default async function decorate(block){
     let arr=[];
     let t = 2;
     let l = 100;
-    function analyseObj(time,lhs) {
-        this.time = time;
-        this.lhs = lhs;
-    }
     block.textContent = '';
     const sheetList = await getAllSheetData();
     console.log(sheetList);
