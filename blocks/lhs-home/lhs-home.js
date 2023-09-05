@@ -1,5 +1,26 @@
 import { getAllSheetData } from '../../scripts/scripts.js';
 
+function gaugeParameters(skipmin,skipmax,postmin,postmax,lastoffRclog,current) {
+ let deduct = 0;
+ let lesser = 0;
+ skipmin=Number(skipmin);
+ skipmax=Number(skipmax);
+ postmin=Number(postmin);
+ postmax=Number(postmax);
+ lastoffRclog=Number(lastoffRclog);
+ current=Number(current);
+ (!postmin||postmin == 0) && (!skipmin||skipmin == 0) ? deduct = deduct + 80:deduct = deduct + 0;
+ (skipmin > 0) ? (deduct = deduct + 10):(deduct = deduct + 0);
+ ((skipmin > 0) && (!postmin||postmin == 0)) ? ((current > (skipmin+(0.3*skipmin)) && (skipmin+(0.5*skipmin))) ? (deduct = deduct + 20):(deduct = deduct + 0)):(deduct = deduct + 0);
+ ((skipmin > 0) && (!postmin||postmin == 0)) ? ((current > (skipmin+(0.5*skipmin))) ? (deduct = deduct + 50):(deduct = deduct + 0)):(deduct = deduct + 0);
+ ((!skipmin||skipmin == 0) && (postmin > 0)) ? ((current > (postmin+(0.3*postmin)) && current < (postmin+(0.5*postmin))) ? (deduct = deduct + 20):(deduct = deduct + 0)):(deduct = deduct + 0);
+ ((!skipmin||skipmin == 0) && (postmin > 0)) ? ((current > (postmin+(0.5*postmin))) ? (deduct = deduct + 50):(deduct = deduct + 0)):(deduct = deduct + 0);
+ (skipmin > 0 && skipmin < postmin) ? lesser = skipmin:(skipmin > 0 && postmin < skipmin && postmin > 0) ? lesser = postmin:(deduct = deduct + 0);
+ (skipmin > 0 && postmin > 0) && (current > (lesser+(0.3*lesser))) && (current < (lesser+(0.5*lesser))) ? (deduct = deduct + 20):(deduct = deduct + 0);
+ (skipmin > 0 && postmin > 0) && (current > (lesser+(0.5*lesser))) ? (deduct = deduct + 50):(deduct = deduct + 0);
+ return deduct;
+}
+
 function createCard(row, style, index) {
     const card = document.createElement('div');
     if (style) card.classList.add(style);
@@ -47,7 +68,8 @@ function createCard(row, style, index) {
     const popupmessage1 = document.createElement('h2');
     popupmessage1.innerHTML='Thank You';
     const popupmessage2 = document.createElement('p');
-    popupmessage2.innerHTML = `<h4>Current Segment Store size is: ${row.current}</h4>`
+    popupmessage2.innerHTML = gaugeParameters(row.skipmin,row.skipmax,row.postmin,row.postmax,row.lastoffRclog,row.current);
+    // popupmessage2.innerHTML = `<h4>Current Segment Store size is: ${row.current}</h4>`
     aem.after(popupmessage1);
     popupmessage1.after(popupmessage2);
     const okButton = document.createElement('button');
