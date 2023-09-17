@@ -10,7 +10,7 @@ export class infoObj {
 function gaugeParameters(skipmin,skipmax,postmin,postmax,lastoffRclog,current) {
  let deduct = 0;
  let lesser = 0;
- const info = document.createElement('p');
+ const info = document.createElement('ul');
  skipmin=Number(skipmin);
  skipmax=Number(skipmax);
  postmin=Number(postmin);
@@ -18,16 +18,22 @@ function gaugeParameters(skipmin,skipmax,postmin,postmax,lastoffRclog,current) {
  lastoffRclog=Number(lastoffRclog);
  current=Number(current);
  current > 20 ? deduct = deduct + 10:deduct = deduct + 0;
- (!postmin||postmin == 0) && (!skipmin||skipmin == 0) ? (deduct = deduct + 80, info.innerHTML = 'There are NO logs in Splunk or no OnRC action has run for this instance. Kindly fix this ASAP'):deduct = deduct + 0;
+ (!postmin||postmin == 0) && (!skipmin||skipmin == 0) ? (deduct = deduct + 80,
+     info.innerHTML = info.innerHTML + '<li>There are NO logs in Splunk or no OnRC action has run for this instance. Kindly fix this ASAP</li>'):deduct = deduct + 0;
  (skipmin > 0) ? (deduct = deduct + 10):(deduct = deduct + 0);
- ((skipmin > 0) && (!postmin||postmin == 0)) ? ((current > (skipmin+(0.3*skipmin)) && (skipmin+(0.5*skipmin))) ? (deduct = deduct + 20):(deduct = deduct + 0)):(deduct = deduct + 0);
- ((skipmin > 0) && (!postmin||postmin == 0)) ? ((current > (skipmin+(0.5*skipmin))) ? (deduct = deduct + 50):(deduct = deduct + 0)):(deduct = deduct + 0);
- ((!skipmin||skipmin == 0) && (postmin > 0)) ? ((current > (postmin+(0.3*postmin)) && current < (postmin+(0.5*postmin))) ? (deduct = deduct + 20):(deduct = deduct + 0)):(deduct = deduct + 0);
- ((!skipmin||skipmin == 0) && (postmin > 0)) ? ((current > (postmin+(0.5*postmin))) ? (deduct = deduct + 50):(deduct = deduct + 0)):(deduct = deduct + 0);
+ ((skipmin > 0) && (!postmin||postmin == 0)) ? ((current > (skipmin+(0.3*skipmin)) && current < (skipmin+(0.5*skipmin))) ? (deduct = deduct + 20,
+     info.innerHTML = info.innerHTML + `<li>The threshold value of Segment Store is ${skipmin} GB</li>`, info.innerHTML = info.innerHTML + `<li>Current Segment Store is more than 30% of its threshold value</li>`):(deduct = deduct + 0)):(deduct = deduct + 0);
+ ((skipmin > 0) && (!postmin||postmin == 0)) ? ((current > (skipmin+(0.5*skipmin))) ? (deduct = deduct + 50, 
+     info.innerHTML = info.innerHTML + `<li>The threshold value of Segment Store is ${skipmin} GB</li>`, info.innerHTML = info.innerHTML + `<li>Current Segment Store is more than 50% of its threshold value</li>`):(deduct = deduct + 0)):(deduct = deduct + 0);
+ ((!skipmin||skipmin == 0) && (postmin > 0)) ? ((current > (postmin+(0.3*postmin)) && current < (postmin+(0.5*postmin))) ? (deduct = deduct + 20, 
+    info.innerHTML = info.innerHTML + `<li>The threshold value of Segment Store is ${postmin} GB</li>`, info.innerHTML = info.innerHTML + `<li>Current Segment Store is more than 30% of its threshold value</li>`):(deduct = deduct + 0)):(deduct = deduct + 0);
+ ((!skipmin||skipmin == 0) && (postmin > 0)) ? ((current > (postmin+(0.5*postmin))) ? (deduct = deduct + 50, 
+    info.innerHTML = info.innerHTML + `<li>The threshold value of Segment Store is ${postmin} GB</li>`, info.innerHTML = info.innerHTML + `<li>Current Segment Store is more than 50% of its threshold value</li>`):(deduct = deduct + 0)):(deduct = deduct + 0);
  (skipmin > 0 && skipmin < postmin) ? lesser = skipmin:(skipmin > 0 && postmin < skipmin && postmin > 0) ? lesser = postmin:(deduct = deduct + 0);
- (skipmin > 0 && postmin > 0) && (current > (lesser+(0.3*lesser))) && (current < (lesser+(0.5*lesser))) ? (deduct = deduct + 20):(deduct = deduct + 0);
- (skipmin > 0 && postmin > 0) && (current > (lesser+(0.5*lesser))) ? (deduct = deduct + 50):(deduct = deduct + 0);
-//  return deduct;
+ (skipmin > 0 && postmin > 0) && (current > (lesser+(0.3*lesser))) && (current < (lesser+(0.5*lesser))) ? (deduct = deduct + 20, 
+    info.innerHTML = info.innerHTML + `<li>The threshold value of Segment Store is ${lesser} GB</li>`, info.innerHTML = info.innerHTML + `<li>Current Segment Store is more than 30% of its threshold value</li>`):(deduct = deduct + 0);
+ (skipmin > 0 && postmin > 0) && (current > (lesser+(0.5*lesser))) ? (deduct = deduct + 50, 
+    info.innerHTML = info.innerHTML + `<li>The threshold value of Segment Store is ${lesser} GB</li>`, info.innerHTML = info.innerHTML + `<li>Current Segment Store is more than 50% of its threshold value</li>`):(deduct = deduct + 0);
 let objInfo = new infoObj(deduct,info);
 return objInfo;
 }
