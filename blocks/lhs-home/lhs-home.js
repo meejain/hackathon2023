@@ -1,8 +1,16 @@
 import { getAllSheetData } from '../../scripts/scripts.js';
 
+export class infoObj {
+    constructor(deduction, pElement) {
+        this.deduction = deduction;
+        this.pElement = pElement;
+    }
+}
+
 function gaugeParameters(skipmin,skipmax,postmin,postmax,lastoffRclog,current) {
  let deduct = 0;
  let lesser = 0;
+ const info = document.createElement('p');
  skipmin=Number(skipmin);
  skipmax=Number(skipmax);
  postmin=Number(postmin);
@@ -10,7 +18,7 @@ function gaugeParameters(skipmin,skipmax,postmin,postmax,lastoffRclog,current) {
  lastoffRclog=Number(lastoffRclog);
  current=Number(current);
  current > 20 ? deduct = deduct + 10:deduct = deduct + 0;
- (!postmin||postmin == 0) && (!skipmin||skipmin == 0) ? deduct = deduct + 80:deduct = deduct + 0;
+ (!postmin||postmin == 0) && (!skipmin||skipmin == 0) ? (deduct = deduct + 80, info.innerHTML = 'There are NO logs in Splunk or no OnRC action has run for this instance. Kindly fix this ASAP'):deduct = deduct + 0;
  (skipmin > 0) ? (deduct = deduct + 10):(deduct = deduct + 0);
  ((skipmin > 0) && (!postmin||postmin == 0)) ? ((current > (skipmin+(0.3*skipmin)) && (skipmin+(0.5*skipmin))) ? (deduct = deduct + 20):(deduct = deduct + 0)):(deduct = deduct + 0);
  ((skipmin > 0) && (!postmin||postmin == 0)) ? ((current > (skipmin+(0.5*skipmin))) ? (deduct = deduct + 50):(deduct = deduct + 0)):(deduct = deduct + 0);
@@ -19,10 +27,12 @@ function gaugeParameters(skipmin,skipmax,postmin,postmax,lastoffRclog,current) {
  (skipmin > 0 && skipmin < postmin) ? lesser = skipmin:(skipmin > 0 && postmin < skipmin && postmin > 0) ? lesser = postmin:(deduct = deduct + 0);
  (skipmin > 0 && postmin > 0) && (current > (lesser+(0.3*lesser))) && (current < (lesser+(0.5*lesser))) ? (deduct = deduct + 20):(deduct = deduct + 0);
  (skipmin > 0 && postmin > 0) && (current > (lesser+(0.5*lesser))) ? (deduct = deduct + 50):(deduct = deduct + 0);
- return deduct;
+//  return deduct;
+let objInfo = new infoObj(deduct,info);
+return objInfo;
 }
 
-function createCard(row, style, index, l) {
+function createCard(row, style, index, l, pElement) {
     const card = document.createElement('div');
     if (style) card.classList.add(style);
     const cardContent = document.createElement('div');
@@ -67,7 +77,7 @@ function createCard(row, style, index, l) {
     aem.src = '../../icons/AEM.png';
     popup.append(aem);
     const popupmessage1 = document.createElement('h2');
-    popupmessage1.innerHTML='Thank You';
+    popupmessage1.innerHTML=pElement.innerHTML;
     const popupmessage2 = document.createElement('p');
     popupmessage2.innerHTML = l;
     // popupmessage2.innerHTML = `<h4>Current Segment Store size is: ${row.current}</h4>`
@@ -135,11 +145,12 @@ export default async function decorate(block){
                 cardparam.append(cardButton);
                 block.append(cardparam);
             }
-            l = (100 - Number(gaugeParameters(row.skipmin,row.skipmax,row.postmin,row.postmax,row.lastoffRclog,row.current)));
+            l = (100 - Number(gaugeParameters(row.skipmin,row.skipmax,row.postmin,row.postmax,row.lastoffRclog,row.current).deduction));
+            let pElement = gaugeParameters(row.skipmin,row.skipmax,row.postmin,row.postmax,row.lastoffRclog,row.current).pElement;
             t = t + 1;
             let obj = new analyseObj(t,l);
             arr.push(obj);
-            block.append(createCard(row, 'lhs-card', index, l));
+            block.append(createCard(row, 'lhs-card', index, l, pElement));
         });
     } else {
         block.remove();
