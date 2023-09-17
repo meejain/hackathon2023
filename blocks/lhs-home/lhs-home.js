@@ -1,6 +1,28 @@
 import { getAllSheetData } from '../../scripts/scripts.js';
 
-function createCard(row, style) {
+function gaugeParameters(skipmin,skipmax,postmin,postmax,lastoffRclog,current) {
+ let deduct = 0;
+ let lesser = 0;
+ skipmin=Number(skipmin);
+ skipmax=Number(skipmax);
+ postmin=Number(postmin);
+ postmax=Number(postmax);
+ lastoffRclog=Number(lastoffRclog);
+ current=Number(current);
+ current > 20 ? deduct = deduct + 10:deduct = deduct + 0;
+ (!postmin||postmin == 0) && (!skipmin||skipmin == 0) ? deduct = deduct + 80:deduct = deduct + 0;
+ (skipmin > 0) ? (deduct = deduct + 10):(deduct = deduct + 0);
+ ((skipmin > 0) && (!postmin||postmin == 0)) ? ((current > (skipmin+(0.3*skipmin)) && (skipmin+(0.5*skipmin))) ? (deduct = deduct + 20):(deduct = deduct + 0)):(deduct = deduct + 0);
+ ((skipmin > 0) && (!postmin||postmin == 0)) ? ((current > (skipmin+(0.5*skipmin))) ? (deduct = deduct + 50):(deduct = deduct + 0)):(deduct = deduct + 0);
+ ((!skipmin||skipmin == 0) && (postmin > 0)) ? ((current > (postmin+(0.3*postmin)) && current < (postmin+(0.5*postmin))) ? (deduct = deduct + 20):(deduct = deduct + 0)):(deduct = deduct + 0);
+ ((!skipmin||skipmin == 0) && (postmin > 0)) ? ((current > (postmin+(0.5*postmin))) ? (deduct = deduct + 50):(deduct = deduct + 0)):(deduct = deduct + 0);
+ (skipmin > 0 && skipmin < postmin) ? lesser = skipmin:(skipmin > 0 && postmin < skipmin && postmin > 0) ? lesser = postmin:(deduct = deduct + 0);
+ (skipmin > 0 && postmin > 0) && (current > (lesser+(0.3*lesser))) && (current < (lesser+(0.5*lesser))) ? (deduct = deduct + 20):(deduct = deduct + 0);
+ (skipmin > 0 && postmin > 0) && (current > (lesser+(0.5*lesser))) ? (deduct = deduct + 50):(deduct = deduct + 0);
+ return deduct;
+}
+
+function createCard(row, style, index, l) {
     const card = document.createElement('div');
     if (style) card.classList.add(style);
     const cardContent = document.createElement('div');
@@ -32,7 +54,7 @@ function createCard(row, style) {
     infoButton.innerHTML = "Diagnostics";
     infoButton.addEventListener('click',function(){
         const topheight = infoButton.offsetTop - 100;
-        const pop = document.querySelector('main .block.lhs-home .card-score .card-info .pop-up');
+        const pop = document.querySelectorAll('main .block.lhs-home .card-score .card-info .pop-up')[index];
         pop.style.top = topheight + 'px';
         console.log(pop.style.top);
         pop.classList.add('open-popup');
@@ -47,12 +69,14 @@ function createCard(row, style) {
     const popupmessage1 = document.createElement('h2');
     popupmessage1.innerHTML='Thank You';
     const popupmessage2 = document.createElement('p');
+    popupmessage2.innerHTML = l;
+    // popupmessage2.innerHTML = `<h4>Current Segment Store size is: ${row.current}</h4>`
     aem.after(popupmessage1);
     popupmessage1.after(popupmessage2);
     const okButton = document.createElement('button');
     okButton.innerHTML = "Ok";
     okButton.addEventListener('click',function(){
-        const pop = document.querySelector('main .block.lhs-home .card-score .card-info .pop-up');
+        const pop = document.querySelectorAll('main .block.lhs-home .card-score .card-info .pop-up')[index];
         pop.classList.remove('open-popup');
     });
     popupmessage2.after(okButton);
@@ -62,20 +86,22 @@ function createCard(row, style) {
     return (card);
 }
 
+export class analyseObj {
+    constructor(time, lhs) {
+        this.time = time;
+        this.lhs = lhs;
+    }
+}
 
 export default async function decorate(block){
     let arr=[];
     let t = 2;
-    let l = 100;
-    function analyseObj(time,lhs) {
-        this.time = time;
-        this.lhs = lhs;
-    }
+    let l = 0;
     block.textContent = '';
     const sheetList = await getAllSheetData();
     console.log(sheetList);
     if (sheetList.length) {
-        sheetList.forEach((row) => {
+        sheetList.forEach((row, index) => {
             if (row == sheetList[0]) {
                 const cardparam = document.createElement('div');
                 block.append(cardparam);
@@ -109,11 +135,11 @@ export default async function decorate(block){
                 cardparam.append(cardButton);
                 block.append(cardparam);
             }
+            l = (100 - Number(gaugeParameters(row.skipmin,row.skipmax,row.postmin,row.postmax,row.lastoffRclog,row.current)));
             t = t + 1;
-            l = l - 10;
             let obj = new analyseObj(t,l);
             arr.push(obj);
-            block.append(createCard(row, 'lhs-card'));
+            block.append(createCard(row, 'lhs-card', index, l));
         });
     } else {
         block.remove();
