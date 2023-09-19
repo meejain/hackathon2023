@@ -221,6 +221,8 @@ main img {
   display: inline-block;
   height: 24px;
   width: 24px;
+  position: relative;
+  left: 50vw;
 }
 
 .icon svg {
