@@ -88,7 +88,7 @@ function createCard(row, style, index, l, pElement) {
     const aem = document.createElement('img');
     aem.src = '../../icons/AEM.png';
     popup.append(aem);
-    const popupmessage1 = document.createElement('h2');
+    const popupmessage1 = document.createElement('ul');
     popupmessage1.innerHTML=pElement.innerHTML;
     const popupmessage2 = document.createElement('p');
     popupmessage2.innerHTML = '<h5> Thank You <h5>';

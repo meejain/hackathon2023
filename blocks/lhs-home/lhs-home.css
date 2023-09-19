@@ -2,10 +2,14 @@
     padding: 0;
 }
 
-.pop-up.open-popup h2 {
+.pop-up.open-popup ul {
   font-family: Montserrat, sans-serif;
   font-size: 18px;
+}
 
+.pop-up.open-popup li {
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .block.lhs-home .card-button {
@@ -236,6 +240,7 @@ main .block.lhs-home .card-score .card-info .pop-up img {
   border-radius: 50%;
   box-shadow: 0 8px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgba(0 0 0 / 19%);
 }
+
 
 
 
