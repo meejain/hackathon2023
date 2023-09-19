@@ -7,7 +7,7 @@ export class infoObj {
     }
 }
 
-function gaugeParameters(skipmin, skipmax, postmin, postmax, lastoffRclog, current) {
+function gaugeParameters(skipmin, skipmax, postmin, postmax, lastoffRclog, current, lastlogskip, lastlogpost) {
     let deduct = 0;
     let lesser = 0;
     const info = document.createElement('ul');
@@ -17,9 +17,11 @@ function gaugeParameters(skipmin, skipmax, postmin, postmax, lastoffRclog, curre
     postmax = Number(postmax);
     lastoffRclog = Number(lastoffRclog);
     current = Number(current);
+    lastlogskip = Number(lastlogskip);
+    lastlogpost = Number(lastlogpost);
     current > 20 ? deduct = deduct + 10 : deduct = deduct + 0;
-    (!postmin || postmin == 0) && (!skipmin || skipmin == 0) ? (deduct = deduct + 80,
-        info.innerHTML = info.innerHTML + '<li>There are NO logs in Splunk or no OnRC action has run for this instance. Kindly fix this ASAP</li>') : deduct = deduct + 0;
+    (!postmin || postmin == 0) && (!skipmin || skipmin == 0) && (!lastoffRclog || lastoffRclog == 0) ? (deduct = deduct + 80,
+        info.innerHTML = info.innerHTML + '<li>There are NO logs in Splunk or no OnRC action has run for this instance. Neither any OffRC logs. Kindly fix this ASAP</li>') : deduct = deduct + 0;
     (skipmin > 0) ? (deduct = deduct + 10) : (deduct = deduct + 0);
     ((skipmin > 0) && (!postmin || postmin == 0)) ? (current < (skipmin + (0.3 * skipmin))) ? (info.innerHTML = info.innerHTML + `<li>Stats looks good. The threshold value of Segment Store is currently around ${skipmin} GB & current Segment Store is ${current} Gb</li>`) : (deduct = deduct + 0) : (deduct = deduct + 0);
     ((postmin > 0) && (!skipmin || skipmin == 0)) ? (current < (postmin + (0.3 * postmin))) ? (info.innerHTML = info.innerHTML + `<li>Stats looks good. The threshold value of Segment Store is currently around ${postmin} GB & current Segment Store is ${current} Gb</li>`) : (deduct = deduct + 0) : (deduct = deduct + 0);
@@ -37,6 +39,7 @@ function gaugeParameters(skipmin, skipmax, postmin, postmax, lastoffRclog, curre
     (skipmin > 0 && postmin > 0) && (current > (lesser + (0.5 * lesser))) ? (deduct = deduct + 50,
         info.innerHTML = info.innerHTML + `<li>The threshold value of Segment Store is ${lesser} GB</li>`, info.innerHTML = info.innerHTML + `<li>Current Segment Store is more than 50% of its threshold value</li>`) : (deduct = deduct + 0);
     (skipmin > 0 && postmin > 0) && (current < (lesser + (0.3 * lesser))) ? (info.innerHTML = info.innerHTML + `<li>Stats looks good. The threshold value of Segment Store is currently around ${lesser} GB & current Segment Store is ${current} Gb</li>`) : (deduct = deduct + 0);
+    (!lastlogskip || lastlogskip == 0) && (lastlogpost > 0) ? (info.innerHTML = info.innerHTML + `<li>OnRC has run recently</li>`):(!lastlogpost || lastlogpost == 0) && (lastlogskip > 0) ? (info.innerHTML = info.innerHTML + `<li>OnRC was skipped recently</li>`): (deduct = deduct + 0);
     let objInfo = new infoObj(deduct, info);
     return objInfo;
 }
@@ -88,7 +91,9 @@ function createCard(row, style, index, l, pElement) {
     const popupmessage1 = document.createElement('h2');
     popupmessage1.innerHTML=pElement.innerHTML;
     const popupmessage2 = document.createElement('p');
-    popupmessage2.innerHTML = '<h2> Thank You <h2>';
+    popupmessage2.innerHTML = '<h5> Thank You <h5>';
+    popupmessage2.querySelector('h5').style.color = "#7e8087";
+    popupmessage2.querySelector('h5').style.fontFamily = "Montserrat";
     aem.after(popupmessage1);
     popupmessage1.after(popupmessage2);
     const okButton = document.createElement('button');
@@ -153,8 +158,9 @@ export default async function decorate(block){
                 cardparam.append(cardButton);
                 block.append(cardparam);
             }
-            l = (100 - Number(gaugeParameters(row.skipmin,row.skipmax,row.postmin,row.postmax,row.lastoffRclog,row.current).deduction));
-            let pElement = gaugeParameters(row.skipmin,row.skipmax,row.postmin,row.postmax,row.lastoffRclog,row.current).pElement;
+            const objResult = gaugeParameters(row.skipmin,row.skipmax,row.postmin,row.postmax,row.lastoffRclog,row.current,row.lastlogskip,row.lastlogpost);
+            l = (100 - objResult.deduction);
+            let pElement = objResult.pElement;
             t = t + 1;
             let obj = new analyseObj(t,l);
             arr.push(obj);
